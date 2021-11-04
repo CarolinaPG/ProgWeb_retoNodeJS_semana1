@@ -78,9 +78,9 @@ module.exports = {
         const newCar = new Car(req.body);
         const user = await User.findById(userID);
         newCar.seller = user;
+        await newCar.save();
         user.cars.push(newCar);
         await user.save();
-        await newCar.save();
         res.status(200).json(newCar);
     }
 };
