@@ -39,21 +39,29 @@ module.exports = {
 
     getUser: async (req, res, next) => {
         const {userID} = req.params;
-        const user = await User.findById(userId);
+        const user = await User.findById(userID);
         res.status(200).json(user);
     },
 
+    // PUT method
     replaceUser: async (req, res, next) => {
         const {userID} = req.params;
         const newUser = req.body;
-        const oldUser = await User.findByIdAndUpdate(userIde, newUser);
+        const oldUser = await User.findByIdAndUpdate(userID, newUser);
         res.status(200).json({success: true});
     },
 
+    // PATCH method
     updateUser: async (req,res,next) => {
         const {userID} = req.params;
         const newUser = req.body;
-        const oldUser = await User.findByIdAndUpdate(userIde, newUser);
+        const oldUser = await User.findByIdAndUpdate(userID, newUser);
+        res.status(200).json({success: true});
+    },
+
+    deleteUser: async (req, res, next) => {
+        const {userID} = req.params;
+        await User.findByIdAndRemove(userID);
         res.status(200).json({success: true});
     }
 };
