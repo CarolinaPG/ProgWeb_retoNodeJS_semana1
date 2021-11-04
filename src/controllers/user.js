@@ -69,7 +69,7 @@ module.exports = {
 
     getUserCars: async (req, res, next) =>{
         const {userID} = req.params;
-        const user = await User.findById(userID);
+        const user = await User.findById(userID).populate('Cars');
         res.status(200).json(user);
     },
 
