@@ -63,6 +63,7 @@ module.exports = {
     deleteUser: async (req, res, next) => {
         const {userID} = req.params;
         await User.findByIdAndRemove(userID);
+        // Falta buscar los carros y eliminarlos tambíen
         res.status(200).json({success: true});
     },
 
@@ -75,11 +76,11 @@ module.exports = {
     newUserCar: async (req, res, next) => {
         const {userID} = req.params;
         const newCar = new Car(req.body);
-        await newCar.save();
         const user = await User.findById(userID);
         newCar.seller = user;
         user.cars.push(newCar);
         await user.save();
+        await newCar.save();
         res.status(200).json(newCar);
     }
 };
