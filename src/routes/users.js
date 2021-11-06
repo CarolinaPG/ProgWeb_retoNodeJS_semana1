@@ -23,5 +23,4 @@ router.delete('/:userID', deleteUser);
 router.get('/:userID/cars', getUserCars);
 router.post('/:userID/cars', newUserCar);
 
-
 module.exports = router;

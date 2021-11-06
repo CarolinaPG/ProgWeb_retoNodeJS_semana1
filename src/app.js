@@ -29,6 +29,8 @@ app.use(bodyParser.json());
 // routes
 //app.use(require('./routes/index'));
 app.use('/users', usersRoutes);
+app.use('/sendEmail', require('./routes/sendEmail'));
+//const usersRoutes = require('./routes/users')
 
 // static files
 
